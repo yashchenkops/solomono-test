@@ -30,8 +30,12 @@
 		    width: 190px;
 			}
 
-		   nav.navbar {
+		   .nav {
 		    margin: 0;
+
+				li a:focus-visible {
+					outline: 2px solid #4c9ffe;
+				}
 		   }
 
 			 .col-sm-4 img {
@@ -44,11 +48,11 @@
 				 box-shadow: 0 0 20px rgba(43,45,56,.06);
 			 }
 
-			 .navbar-nav .dropdown .caret {
+			 .dropdown .dropdown-toggle .caret {
 					transition: rotate 0.3s;
 				}
 
-				.navbar-nav .dropdown.open .caret {
+				.dropdown.open .dropdown-toggle .caret {
 					rotate: -180deg;
 				}
 
@@ -57,6 +61,49 @@
 					white-space: nowrap;
 					overflow: hidden;
 					text-overflow: ellipsis;
+				}
+
+				.has-submenu {
+					position: relative;
+
+					&:hover .submenu,
+					&:focus-within .submenu {
+						opacity: 1;
+						visibility: visible;
+						translate: 0 0;
+					}
+				}
+
+				.submenu {
+					position: absolute;
+					padding: 5px 0;
+					top: 0;
+					left: 100%;
+					list-style: none;
+					width: 190px;
+					background: #fff;
+					border: 1px solid #ddd;
+					opacity: 0;
+					visibility: hidden;
+					translate: 10px 0;
+					transition: opacity .2s ease, translate .2s ease;
+					box-shadow: 0 6px 12px rgba(5, 3, 3, 0.17);
+
+					a {
+						display: block;
+						padding: 3px 20px;
+						color: #333;
+						text-decoration: none;
+						width: 190px;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+
+						&:hover {
+							color: #262626;
+							background-color: #f5f5f5;
+						}
+					}
 				}
   </style>
 	</head>
@@ -101,11 +148,27 @@
 		        <li><a href="#">Кабінет</a></li>
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Категорії <span class="caret"></span></a>
-		          <ul class="dropdown-menu">
+		          <ul class="dropdown-menu" role="menu">
 								<?php foreach ($categories as $category): ?>
-									<li>
-										<a href="#"><?= $category ?></a>
-									</li>
+								<li class="<?= $category === 'Комп`ютери' ? 'has-submenu' : '' ?>">
+									<a href="#" title="<?= $category ?>" role="menuitem">
+										<?= $category ?>
+										<?php if ($category === 'Комп`ютери'): ?>
+											<span class="caret" aria-hidden="true"></span>
+										<?php endif; ?>
+									</a>
+									<?php if ($category === 'Комп`ютери'): ?>
+										<ul class="submenu" role="menu">
+											<?php foreach ($sub_categories as $sub): ?>
+												<li>
+													<a href="#" title="<?= $sub ?>" role="menuitem">
+														<?= $sub ?>
+													</a>
+												</li>
+											<?php endforeach; ?>
+										</ul>
+									<?php endif; ?>
+								</li>
 								<?php endforeach; ?>
 							</ul>
 		        </li>
