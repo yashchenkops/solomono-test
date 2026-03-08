@@ -43,6 +43,21 @@
 				 -webkit-box-shadow: 0 0 20px rgba(43,45,56,.06);
 				 box-shadow: 0 0 20px rgba(43,45,56,.06);
 			 }
+
+			 .navbar-nav .dropdown .caret {
+					transition: rotate 0.3s;
+				}
+
+				.navbar-nav .dropdown.open .caret {
+					rotate: -180deg;
+				}
+
+				.dropdown-menu li a {
+					width: 100%;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
   </style>
 	</head>
 	<body>
@@ -87,14 +102,12 @@
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Категорії <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">Action</a></li>
-		            <li><a href="#">Another action</a></li>
-		            <li><a href="#">Something else here</a></li>
-		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Separated link</a></li>
-		            <li role="separator" class="divider"></li>
-		            <li><a href="#">One more separated link</a></li>
-		          </ul>
+								<?php foreach ($categories as $category): ?>
+									<li>
+										<a href="#"><?= $category ?></a>
+									</li>
+								<?php endforeach; ?>
+							</ul>
 		        </li>
 						<li><a href="test20html.php?download=true"><u>Завантажити <b>test20html.php</b></u></a></li>
 		      </ul>
@@ -117,7 +130,7 @@
 							<ul>
 								<?php
 									foreach ($categories as $category) {
-											echo '<li>'.$category.'</li>';
+										echo '<li>'.$category.'</li>';
 									}
 								?>
 							</ul>
@@ -130,7 +143,7 @@
 		      <h3>Завдання 2</h3>
 					<ul>
 						<li>При наведенні на категорію "Комп`ютери", показувати список підкатегорій (без JS, використати масив PHP <b>$sub_categories</b>)</li>
-                        <li>Не наводячи на пункт "Комп`ютери" потрібно, щоб візуально було видно і зрозуміло, що в ньому є список підкатегорій</li>
+            <li>Не наводячи на пункт "Комп`ютери" потрібно, щоб візуально було видно і зрозуміло, що в ньому є список підкатегорій</li>
 						<li>На появу меню підкатегорій додати CSS ефекти\анімацію на свій смак</li>
 					</ul>
 		    </div>
