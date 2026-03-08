@@ -105,6 +105,106 @@
 						}
 					}
 				}
+
+				.account-menu {
+					position: relative;
+
+					&:hover .account-dropdown,
+					&:focus-within .account-dropdown {
+						opacity: 1;
+						visibility: visible;
+						translate: 0 0;
+					}
+				}
+
+				.account-dropdown {
+					position: absolute;
+					top: 50px;
+					left: 0;
+					width: 360px;
+					background: white;
+					border: 1px solid #ddd;
+					border-radius: 5px;
+					padding: 20px;
+					box-shadow: 0 5px 20px rgba(0,0,0,.08);
+					opacity: 0;
+					visibility: hidden;
+					translate: 0 10px;
+					transition: .25s ease;
+				}
+
+				.form-tabs {
+					margin-bottom: 20px;
+				}
+
+				.tab-btn {
+					background: none;
+					border: none;
+					font-size: 16px;
+					color: #2a7de1;
+					padding: 0;
+					cursor: pointer;
+
+					&.active {
+						font-weight: 600;
+						border-bottom: 1px dashed #2a7de1;
+					}
+				}
+
+				.form-group {
+					display: flex;
+					align-items: center;
+					margin-bottom: 13px;
+
+					&:last-child {
+						margin-top: 20px;
+						margin-bottom: 0;
+					}
+				}
+
+				.form-horizontal {
+					.custom-label {
+						text-align: left;
+						font-weight: 400;
+						padding-top: 0;
+					}
+
+					.custom-input {
+						height: 40px;
+						border-radius: 12px;
+						border: 1px solid #d9d9d9;
+						box-shadow: none;
+						font-weight: 600;
+
+						&:focus {
+							border-color: #2a7de1;
+							box-shadow: none;
+						}
+					}
+				}
+
+				.custom-checkbox {
+					display: flex;
+					position: relative;
+
+					input {
+						display: none;
+					}
+				}
+
+				.checkbox-ui {
+					display: inline-block;
+					width: 18px;
+					height: 18px;
+					border: 1px solid #ccc;
+					border-radius: 4px;
+					background: #fff;
+				}
+
+				.custom-checkbox input:checked + .checkbox-ui {
+					background: #2a7de1;
+					border-color: #2a7de1;
+				}
   </style>
 	</head>
 	<body>
@@ -145,7 +245,44 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse">
 		      <ul class="nav navbar-nav">
-		        <li><a href="#">Кабінет</a></li>
+		        <li class="account-menu">
+							<a href="#" aria-haspopup="true">Кабінет</a>
+							<div class="account-dropdown">
+								<form class="form-horizontal account-form">
+									<div class="form-tabs">
+										<button type="button" class="tab-btn active">First Name</button>
+										<button type="button" class="tab-btn">Settings</button>
+									</div>
+									<div class="form-group">
+										<label for="firstName" class="col-xs-4 control-label custom-label">
+											Label
+										</label>
+										<div class="col-xs-8">
+											<input id="firstName" name="first_name" type="text" class="form-control custom-input" value="First Name">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="placeholder" class="col-xs-4 control-label custom-label">
+											Placeholder
+										</label>
+										<div class="col-xs-8">
+											<input id="placeholder" name="placeholder" type="text" class="form-control custom-input">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="checkbox" class="col-xs-4 control-label custom-label">
+											Required
+										</label>
+										<div class="col-xs-8">
+											<label class="custom-checkbox">
+												<input id="checkbox" name="required" type="checkbox">
+												<span class="checkbox-ui"></span>
+											</label>
+										</div>
+									</div>
+								</form>
+							</div>
+						</li>
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Категорії <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
